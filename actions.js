@@ -17,13 +17,11 @@ actions.flash = function(pin, length){
 actions.open = function(pin){
     return new Promise(function(resolve, reject){
 	gpio.open(pin, "output", function(err){
-	    gpio.write(pin, _ON_, function(err){
-		if(err){
-		    reject(err);
-		}else{
-		    resolve();
-		}
-	    });
+	    if(err){
+	        reject(err);
+	    }else{
+	        resolve();
+	    }
 	});
     });
 };

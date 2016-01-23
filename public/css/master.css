@@ -1,0 +1,56 @@
+body{
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  font-family: 'Helvetica', sans-serif;
+}
+
+section{
+  padding: 1em;
+  width: 80%;
+  margin-top: 1em;
+  margin-left: 10%;
+  background-color: rgb(212, 212, 212);
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.34), 0 2px 1px rgba(0, 0, 0, 0.11);
+}
+
+h1{
+  font-size: 2em;
+  color: rgb(148, 148, 148);
+  border-bottom: 2px solid rgb(148,148,148);
+  padding: 0.25em;
+}
+
+.pin{
+  padding: 1em;
+  background-color: rgb(181, 181, 181);
+  margin: 0.5em;
+}
+
+.pin h2{
+  margin: 0;
+}
+
+.pin i{
+  float: right;
+  display: block;
+  margin-right: 10px;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.activate{
+  color: rgb(69, 203, 114);
+}
+
+.activate:hover{
+  color: rgb(74, 147, 98);
+}
+
+.close{
+  color: rgb(212, 88, 88);
+}
+
+.close:hover{
+  color: rgb(149, 46, 46);
+}

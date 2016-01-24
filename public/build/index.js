@@ -1,0 +1,69 @@
+angular.module('HomeAutomation', [])
+.controller('PinController', ['$scope', '$http', function($scope, $http){
+  $scope.pins = ['11', '12', '13'];
+}])
+.service('PinService', ['$http', function($http){
+  this.openPin = function(pinNumber){
+    return $http({
+      method: 'GET',
+      url: '/open/' + pinNumber
+    });
+  };
+
+  this.closePin = function(pinNumber){
+    return $http({
+      method: 'GET',
+      url: '/close/' + pinNumber
+    });
+  };
+
+  this.turnOn = function(pinNumber){
+    return $http({
+      method: 'GET',
+      url: '/on/' + pinNumber
+    });
+  };
+
+  this.turnOff = function(pinNumber){
+    return $http({
+      method: 'GET',
+      url: '/on/' + pinNumber
+    });
+  };
+}])
+.controller('PinActionController', ['$scope', 'PinService', function($scope, PinService){
+  $scope.active = false;
+  $scope.open = false;
+
+  $scope.toggle = function(){
+    $scope.active = !$scope.active;
+    if($scope.active){
+      PinService.turnOn($scope.pinNumber).success(function(res){});
+    }else{
+      PinService.turnOff($scope.pinNumber).success(function(res){});
+    }
+  };
+
+  $scope.close = function(){
+    $scope.open = false;
+    PinService.closePin($scope.pinNumber).success(function(res){});
+  };
+
+  $scope.openUp = function(){
+    $scope.open = true;
+    PinService.openPin($scope.pinNumber).success(function(res){});
+  };
+}])
+.directive('pinAction', function(){
+    var link = function(scope, element, attrs){};
+
+    return {
+      restrict: 'E',
+      link: link,
+      scope:{
+        pinNumber : '='
+      },
+      templateUrl: '/templates/pinActions.html',
+      controller: 'PinActionController'
+    }
+});

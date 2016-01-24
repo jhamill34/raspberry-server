@@ -40,12 +40,17 @@ h1{
   cursor: pointer;
 }
 
+
 .toggle{
   color: rgb(75, 75, 75);
 }
 
 .toggle:hover{
   color: rgb(115, 115, 115);
+}
+
+.inactive{
+  color: rgb(208, 208, 208);
 }
 
 .activate{
@@ -68,20 +73,21 @@ h1{
   font-size: 1.5em;
   padding: 0.5em;
   box-sizing: border-box;
-  width: 75%;
+  width: 100%;
   outline: none;
-  border: 1px solid rgb(213, 213, 213);
-  margin: 10px;
+  border: none;
 }
 
 .add-pin{
-  width: 20%;
+  width: 100%;
   font-size: 1.5em;
   padding: 0.5em;
   border: none;
   background-color: rgb(112, 214, 129);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  outline: none;
+  margin-top: 10px;
 }
 
 .add-pin:hover{

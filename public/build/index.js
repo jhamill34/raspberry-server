@@ -42,17 +42,21 @@ angular.module('HomeAutomation', [])
   $scope.open = false;
 
   $scope.toggle = function(){
-    $scope.active = !$scope.active;
-    if($scope.active){
-      PinService.turnOn($scope.pinNumber).success(function(res){});
-    }else{
-      PinService.turnOff($scope.pinNumber).success(function(res){});
+    if($scope.open){
+      $scope.active = !$scope.active;
+      if($scope.active){
+        PinService.turnOn($scope.pinNumber).success(function(res){});
+      }else{
+        PinService.turnOff($scope.pinNumber).success(function(res){});
+      }
     }
   };
 
   $scope.close = function(){
-    $scope.open = false;
-    PinService.closePin($scope.pinNumber).success(function(res){});
+    if($scope.open){
+      $scope.open = false;
+      PinService.closePin($scope.pinNumber).success(function(res){});
+    }
   };
 
   $scope.openUp = function(){

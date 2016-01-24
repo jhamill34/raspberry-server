@@ -9,6 +9,8 @@
       <section ng-controller="PinController">
         <h1>Home Automation</h1>
         <pin-action ng-repeat="number in pins" pin-number="number"></pin-action>
+        <input class="new-pin-input" type="text" ng-model="newPin" value="">
+        <button class="add-pin" type="button" name="button" ng-click="addPin()">Register Pin</button>
       </section>
       <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
       <script type="text/javascript" src="/build/index.js"></script>

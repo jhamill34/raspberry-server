@@ -1,6 +1,12 @@
 angular.module('HomeAutomation', [])
 .controller('PinController', ['$scope', '$http', function($scope, $http){
-  $scope.pins = ['11', '12', '13'];
+  $scope.pins = [];
+  $scope.addPin = function(){
+    var pin = parseInt($scope.newPin);
+    if(pin){
+      $scope.pins.push($scope.newPin);
+    }
+  };
 }])
 .service('PinService', ['$http', function($http){
   this.openPin = function(pinNumber){

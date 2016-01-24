@@ -63,3 +63,27 @@ h1{
 .close:hover{
   color: rgb(149, 46, 46);
 }
+
+.new-pin-input{
+  font-size: 1.5em;
+  padding: 0.5em;
+  box-sizing: border-box;
+  width: 75%;
+  outline: none;
+  border: 1px solid rgb(213, 213, 213);
+  margin: 10px;
+}
+
+.add-pin{
+  width: 20%;
+  font-size: 1.5em;
+  padding: 0.5em;
+  border: none;
+  background-color: rgb(112, 214, 129);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-pin:hover{
+  background-color: rgb(68, 143, 175);
+}

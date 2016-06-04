@@ -26,7 +26,7 @@ angular.module('HomeAutomation', [])
 }])
 .controller('PinActionController', ['$scope', 'PinService', function($scope, PinService){
   $scope.active = false;
-  $scope.open = false;
+  $scope.open = true;
 
   $scope.toggle = function(){
     if($scope.open){

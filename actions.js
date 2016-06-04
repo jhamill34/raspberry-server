@@ -14,18 +14,6 @@ actions.flash = function(pin, length){
     });
 };
 
-actions.open = function(pin){
-    return new Promise(function(resolve, reject){
-	gpio.open(pin, "output", function(err){
-	    if(err){
-	        reject(err);
-	    }else{
-	        resolve();
-	    }
-	});
-    });
-};
-
 actions.on = function(pin){
     return new Promise(function(resolve, reject){
 	gpio.write(pin, _ON_, function(err){
@@ -43,18 +31,6 @@ actions.off = function(pin){
 	gpio.write(pin, _OFF_, function(err){
 	    if(err){
 		reject(err);	
-	    }else{
-		resolve();
-	    }
-	});
-    });
-};
-
-actions.close = function(pin){
-    return new Promise(function(resolve, reject){
-	gpio.close(pin, function(err){
-	    if(err){
-		reject(err);
 	    }else{
 		resolve();
 	    }

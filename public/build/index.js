@@ -9,19 +9,6 @@ angular.module('HomeAutomation', [])
   };
 }])
 .service('PinService', ['$http', function($http){
-  this.openPin = function(pinNumber){
-    return $http({
-      method: 'GET',
-      url: '/open/' + pinNumber
-    });
-  };
-
-  this.closePin = function(pinNumber){
-    return $http({
-      method: 'GET',
-      url: '/close/' + pinNumber
-    });
-  };
 
   this.turnOn = function(pinNumber){
     return $http({
@@ -33,7 +20,7 @@ angular.module('HomeAutomation', [])
   this.turnOff = function(pinNumber){
     return $http({
       method: 'GET',
-      url: '/on/' + pinNumber
+      url: '/off/' + pinNumber
     });
   };
 }])
@@ -50,18 +37,6 @@ angular.module('HomeAutomation', [])
         PinService.turnOff($scope.pinNumber).success(function(res){});
       }
     }
-  };
-
-  $scope.close = function(){
-    if($scope.open){
-      $scope.open = false;
-      PinService.closePin($scope.pinNumber).success(function(res){});
-    }
-  };
-
-  $scope.openUp = function(){
-    $scope.open = true;
-    PinService.openPin($scope.pinNumber).success(function(res){});
   };
 }])
 .directive('pinAction', function(){

@@ -16,3 +16,23 @@ setInterval(function(){
     });
   });
 }, 1000);
+
+
+$('button').on(function(){
+  var outletNumber = $(this).data('outlet');
+  if($(this).hasClass('selected')){
+    $.ajax({
+      url : '/outlets/' + outletNumber,
+      method : 'DELETE'
+    }).then(function(){
+      $(this).removeClass('selected');
+    }.bind(this));
+  }else{
+    $.ajax({
+      url : '/outlets/' + outletNumber,
+      method : 'POST'
+    }).then(function(){
+      $(this).addClass('selected');
+    }.bind(this));
+  }
+});

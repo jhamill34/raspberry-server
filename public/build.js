@@ -18,6 +18,26 @@ setInterval(function(){
   });
 }, 1000);
 
+
+$('button').on(function(){
+  var outletNumber = $(this).data('outlet');
+  if($(this).hasClass('selected')){
+    $.ajax({
+      url : '/outlets/' + outletNumber,
+      method : 'DELETE'
+    }).then(function(){
+      $(this).removeClass('selected');
+    }.bind(this));
+  }else{
+    $.ajax({
+      url : '/outlets/' + outletNumber,
+      method : 'POST'
+    }).then(function(){
+      $(this).addClass('selected');
+    }.bind(this));
+  }
+});
+
 },{"jquery":2}],2:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.0.0

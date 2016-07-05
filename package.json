@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-client" : "browserify client/*.js --outfile public/build.js"
+    "test": "mocha specs/*Spec.js",
+    "build-client": "browserify client/*.js --outfile public/build.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,11 @@
   },
   "devDependencies": {
     "browserify": "^13.0.1",
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "mock-require": "^1.3.0",
+    "sinon": "^1.17.4",
+    "supertest": "^1.2.0",
     "watch": "^0.19.1"
   }
 }

@@ -12,7 +12,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "jquery": "^3.0.0",
-    "pi-gpio": "0.0.8",
+    "pi-gpio": "git://github.com/xlr8runner/pi-gpio.git#gpioutil-fs-hybrid",
     "promise": "^7.1.1"
   },
   "devDependencies": {

@@ -1,0 +1,56 @@
+body {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.container{
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+
+.container button{
+  border: 0;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.32), 0px 2px 1px rgba(0, 0, 0, 0.11);
+  cursor: pointer;
+  font-size: 2em;
+  display: block;
+  float: left;
+  transition: background-color 0.2s ease-in;
+  outline: none;
+  box-sizing: border-box;
+  height: 100%;
+  width: 25%;
+}
+
+.container button:nth-of-type(2n){
+  background-color: rgba(207, 207, 207, 0.5);
+}
+
+.container button:nth-of-type(2n + 1){
+  background-color: rgba(200, 200, 200, 0.75);
+}
+
+.container button:hover{
+  background-color: rgba(237, 237, 237, 0.5);
+}
+
+.container button.selected:nth-of-type(2n){
+  background-color: rgba(116, 217, 144, 0.5);
+}
+
+.container button.selected:nth-of-type(2n+1){
+  background-color: rgba(116, 217, 144, 0.75);
+}
+
+@media (max-width: 900px) {
+  .container button{
+    width: 100%;
+    height: 25%;
+  }
+}

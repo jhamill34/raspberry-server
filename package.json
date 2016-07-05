@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-client" : "browserify client/*.js --outfile public/build.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
+    "jquery": "^3.0.0",
     "pi-gpio": "0.0.8",
     "promise": "^7.1.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "watch": "^0.19.1"
   }
 }

@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html ng-app="HomeAutomation">
+<html>
     <head>
-	     <title>Home Automation | </title>
-       <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" media="screen" title="no title" charset="utf-8">
-       <link rel="stylesheet" href="/css/master.css" media="screen" title="no title" charset="utf-8">
+        <title>Joshua's Appartment</title>
+        <link rel="stylesheet" href="/index.css">
     </head>
     <body>
-      <section ng-controller="PinController">
-        <h1>Home Automation</h1>
-        <pin-action ng-repeat="number in pins" pin-number="number"></pin-action>
-        <input class="new-pin-input" type="text" ng-model="newPin" value="">
-        <button class="add-pin" type="button" name="button" ng-click="addPin()">Register Pin</button>
-      </section>
-      <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
-      <script type="text/javascript" src="/build/index.js"></script>
+      <div class="container">
+          <button data-socket="1" type="button">A</button>
+          <button data-socket="2" type="button">B</button>
+          <button data-socket="3" type="button">C</button>
+          <button data-socket="4" type="button">D</button>
+      </div>
     </body>
+    <script type="text/javascript" src="/build.js"></script>
 </html>

@@ -1,4 +1,4 @@
-var gpio = require('pi-gpio');
+//var gpio = require('pi-gpio');
 var Promise = require('promise');
 
 var actions = {};

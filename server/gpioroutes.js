@@ -2,8 +2,27 @@ var express = require('express');
 var router = express.Router();
 var Actions = require('./actions');
 
+// Mount some pin converting middle ware
+var pinLookupTable = require('./pinLookupTable');
+var pinStatus = {};
+router.use('/:id', function(req, res, next){
+  if(pinLookupTable[req.params.id] !== undefined){
+    next();
+  }else{
+    res.sendStatus(404);
+  }
+});
+
+router.get('/:id', function(req, res){
+  res.status(200).json({
+    status : pinStatus[req.params.id] || 'off'
+  });
+});
+
 router.post('/:id', function(req, res){
-  Actions.on(req.params.id).then(function(){
+  Actions.on(pinLookupTable[req.params.id]).then(function(){
+    pinStatus[req.params.id] = 'on';
+
     res.status(201).json({
       status : 'on',
       success : true
@@ -16,42 +35,18 @@ router.post('/:id', function(req, res){
   });
 });
 
-/**
- * GET /on/:id
- * @param {number} id
- * @returns json of the status
- */
-router.get('/on/:id', function(req, res){
-  Actions.on(req.params.id).then(function(){
-    res.status(200).json({
-      status: 'on',
-      success: true,
-      pin: req.params.id
-    });
+router.delete('/:id', function(req, res){
+  Actions.off(pinLookupTable[req.params.id]).then(function(){
+      pinStatus[req.params.id] = 'off';
+      
+      res.status(200).json({
+        status : 'off',
+        success : true
+      });
   }).catch(function(err){
     res.status(500).json({
-      success: false,
-      message: err
-    });
-  });
-});
-
-/**
- * GET /off/:id
- * @param {number} id
- * @returns json of the status
- */
-router.get('/off/:id', function(req, res){
-  Actions.off(req.params.id).then(function(){
-    res.status(200).json({
-      status: 'off',
-	    success: true,
-	    pin: req.params.id
-    });
-  }).catch(function(err){
-    res.status(500).json({
-      success: false,
-      message: err
+      success : false,
+      message : err
     });
   });
 });

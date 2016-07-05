@@ -28,12 +28,12 @@ describe("App routes", function(){
   context("GET /outlets", function(){
     it("should return the json of all the outlets", function(done){
         request(app).get('/outlets')
-          .expect(200, [
-            { id : '1', status : 'off' },
-            { id : '2', status : 'off' },
-            { id : '3', status : 'off' },
-            { id : '4', status : 'off' },
-          ])
+          .expect(200, {
+            '1' : 'off',
+            '2' : 'off',
+            '3' : 'off',
+            '4' : 'off'
+          })
           .end(function(err){
             if(err) throw err;
             done();

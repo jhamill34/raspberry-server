@@ -1,7 +1,18 @@
 var $ = require('jquery');
 
-$('button').on('click', function(){
-    var outlet = $(this).data('outlet');
-
-
-});
+// Poll the server for pin status every 1s
+setInterval(function(){
+  $.ajax({
+    url : '/outlets',
+    method : 'GET'
+  }).then(function(result){
+    $('buttons').each(function(button){
+      var outletStatus = result[$(button).data('outlet')];
+      if(outletStatus === 'on'){
+        $(button).addClass('selected');
+      }else if(outletStatus === 'off'){
+        $(button).removeClass('selected');
+      }
+    });
+  });
+}, 1000);

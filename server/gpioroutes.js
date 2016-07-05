@@ -20,14 +20,7 @@ router.use('/:id', function(req, res, next){
 });
 
 router.get('/', function(req, res){
-  var result = Object.keys(pinStatus).map(function(key){
-    return {
-      id : key,
-      status : pinStatus[key]
-    };
-  });
-
-  res.status(200).json(result);
+  res.status(200).json(pinStatus);
 });
 
 router.get('/:id', function(req, res){

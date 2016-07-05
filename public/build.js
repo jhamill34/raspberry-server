@@ -9,7 +9,7 @@ setInterval(function(){
   }).then(function(result){
     console.log(result);
     $('button').each(function(button){
-      var outletStatus = result[$(button).data('outlet')];
+      var outletStatus = result[parseInt($(button).data('outlet'))];
       if(outletStatus === 'on'){
         $(button).addClass('selected');
       }else if(outletStatus === 'off'){

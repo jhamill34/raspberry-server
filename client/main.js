@@ -6,6 +6,7 @@ setInterval(function(){
     url : '/outlets',
     method : 'GET'
   }).then(function(result){
+    console.log(result);
     $('button').each(function(button){
       var outletStatus = result[$(button).data('outlet')];
       if(outletStatus === 'on'){

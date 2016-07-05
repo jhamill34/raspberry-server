@@ -19,7 +19,7 @@ setInterval(function(){
 }, 1000);
 
 
-$('button').on(function(){
+$('button').on('click', function(){
   var outletNumber = $(this).data('outlet');
   if($(this).hasClass('selected')){
     $.ajax({

@@ -25,6 +25,22 @@ describe("App routes", function(){
       mockAction.restore();
   });
 
+  context("GET /outlets", function(){
+    it("should return the json of all the outlets", function(done){
+        request(app).get('/outlets')
+          .expect(200, [
+            { id : '1', status : 'off' },
+            { id : '2', status : 'off' },
+            { id : '3', status : 'off' },
+            { id : '4', status : 'off' },
+          ])
+          .end(function(err){
+            if(err) throw err;
+            done();
+          });
+    });
+  });
+
   context("GET /outlets/1", function(){
     it("should return json status of off", function(done){
         request(app).get('/outlets/1')

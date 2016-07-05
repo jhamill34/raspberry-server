@@ -7,8 +7,7 @@ setInterval(function(){
     url : '/outlets',
     method : 'GET'
   }).then(function(result){
-    console.log(result);
-    $('button').each(function(button){
+    $('button').each(function(ndx, button){
       var outletStatus = result[parseInt($(button).data('outlet'))];
       if(outletStatus === 'on'){
         $(button).addClass('selected');

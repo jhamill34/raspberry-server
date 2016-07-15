@@ -1,23 +1,23 @@
 var fs = require('fs');
 
-var SHA3 = require('sha3');
+var bcrypt = require('bcrypt');
 var config = require('../config.json')[process.env.NODE_ENV || 'development'];
 
 module.exports = {
     checkCreds: function(uname, password, callback){
-        // Generate the 512 hash
-        var d = new SHA3.SHA3Hash();
-        d.update(password);
-        var login_string = uname + ":" + d.digest('hex');
-        
         fs.readFile(config['users_location'], function(err, data){
             var lines = data.toString().split("\n");
+           
+            var line_parts;
             for(var i = 0; i < lines.length; i++){
-                if(result = (lines[i] === login_string)){
-                    break;
+                line_parts = lines[i].split(":");
+                
+                if(line_parts.length === 2 && line_parts[0] === uname){
+                   break; 
                 }
             }
-            callback(result);
+
+            bcrypt.compare(password, line_parts[1], callback);            
         });
 
     }

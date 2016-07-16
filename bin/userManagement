@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 //
 // TODO: Add a search method to make sure we dont add duplicates
 // TODO: Add a delete feature

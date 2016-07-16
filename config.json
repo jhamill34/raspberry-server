@@ -1,8 +1,0 @@
-{
-    "development" : {
-        "users_location" : "./test_users.txt"
-    },
-    "production" : {
-        "users_location" : "./users.txt"
-    }
-}

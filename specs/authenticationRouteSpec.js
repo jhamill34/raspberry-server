@@ -1,5 +1,7 @@
 var request = require('supertest');
 
+var expect = require('chai').expect;
+
 var config = require('../config')[process.env.NODE_ENV || "development"];
 var app = require('../app');
 var jwt = require('jsonwebtoken');
@@ -40,27 +42,49 @@ describe("Authentication Route Specs", function(){
     });
 
     context("JSON web token", function(){
-        it("should create a json web token on success", function(done){
+        it("should be able to verify the token", function(done){
             var time = Date.now();
             tk.freeze(time);
 
-            var mytoken = jwt.sign({
-                uname : 'Josh', 
-                exp: Math.floor(Date.now() / 1000) + 3600 * 4
-            }, config.secret, {
-                algorithm : 'HS256'    
-            });
             request(app).post('/authenticate')
                 .send({
                     uname : 'Josh',
                     password : 'password'
                 })
-                .expect(201, {
-                    token : mytoken 
-                })
-                .end(function(err){
+                .end(function(err, res){
                     if(err) throw err;
-                    done();
+                    
+                    // Verify the token 
+                    jwt.verify(res.body.token, config.secret, function(err, decoded){
+                        expect(decoded.uname).to.equal('Josh');   
+                        done();
+                    }); 
+                });
+        });
+
+        it("should expire the token after 4 hours", function(done){
+            // Freeze the time to NOW 
+            var time = Date.now();
+            tk.freeze(time);
+
+            request(app).post('/authenticate')
+                .send({
+                    uname : 'Josh',
+                    password : 'password'
+                })
+                .end(function(err, res){
+                    if(err) throw err;
+                   
+                    // Move time forward to invalidate the token 5 hours
+                    var futureDate = time + 3600000 * 5;
+                    tk.freeze(futureDate);
+
+                    // Verify the token 
+                    jwt.verify(res.body.token, config.secret, function(err, decoded){
+                       expect(err).to.not.be.null;
+                       tk.reset(); 
+                       done();
+                    }); 
                 });
         });
     });

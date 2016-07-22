@@ -1,5 +1,15 @@
 var $ = require('jquery');
 
+$("input").on('keyup', function(){
+  if($(this).val() !== ''){
+    $(this).removeClass('ng-invalid');
+    $(this).addClass('ng-valid');
+  }else{
+    $(this).removeClass('ng-valid');
+    $(this).addClass('ng-invalid');
+  }
+});
+
 // Poll the server for pin status every 1s
 setInterval(function(){
   $.ajax({

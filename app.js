@@ -17,7 +17,7 @@ app.use(function(err, req, res, next){
     }
 });
 
-app.use('/outlets', require('./server/gpioroutes'));
+//app.use('/outlets', require('./server/gpioroutes'));
 app.use('/authenticate', require('./server/authenticationRoutes'));
 
 module.exports = app;

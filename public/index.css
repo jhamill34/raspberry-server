@@ -48,6 +48,154 @@ body {
   background-color: rgba(116, 217, 144, 0.75);
 }
 
+.login-area{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  padding: 6em;
+}
+
+.login-area form h1{
+  text-align: center;
+  background-color: transparent;
+  color: rgb(158, 158, 158);
+  font-size: 2em;
+  letter-spacing: 0.25em;
+  font-weight: 100;
+  padding-bottom: 0.5em;
+}
+.login-area form{
+  width: 20em;
+  padding: 1em 2em;
+  margin: auto;
+  background-color: rgb(230, 230, 230);
+  position: relative;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.32), 0px 3px 1px 4px rgba(0, 0, 0, 0.14);
+  animation: wobble 1.5s ease-in-out;
+}
+
+.login-area form::before{
+  content: '';
+  width: 4em;
+  height: 4em;
+  border-radius: 64px;
+  background-color: rgb(217, 119, 119);
+  position: absolute;
+  left: 10em;
+  top: -2em;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.12);
+}
+
+.login-area form h1 + svg{
+  width: 100%;
+  height: 5px;
+  margin-bottom: 8px;
+}
+
+.login-area form h1 + svg .border{
+  stroke-width: 1px;
+  stroke: rgb(158, 158, 158);
+  fill: transparent;
+  stroke-dasharray: 90% 200%;
+  transition: stroke-dasharray 0.3s ease-in-out;
+}
+
+.login-area form:hover h1 + svg .border{
+  stroke-dasharray: 200% 200%;
+}
+
+.login-area form input,
+.login-area form label{
+  display: block;
+}
+
+.login-area form input{
+  font-size: 1.5em;
+  padding: 0.75em;
+  height: 3em;
+  width: 100%;
+  outline: none;
+  box-sizing: border-box;
+  border: 0;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.53);
+}
+
+.login-area form input:focus ~ svg .input-border,
+.login-area form input.ng-valid ~ svg .input-border{
+  stroke-dasharray: 950px 950px;
+}
+
+.login-area form input.ng-valid ~ svg .input-border{
+  stroke: rgb(0, 228, 92);
+}
+
+.login-area form input.ng-invalid ~ svg .input-border{
+  stroke: rgb(232, 0, 0);
+}
+
+.form-element{
+  position: relative;
+  margin-bottom: 2em;
+  height: 6em;
+}
+
+.login-area .form-element svg{
+  height: 4.5em;
+  position: absolute;
+  bottom: 0;
+}
+
+.input-border{
+  stroke-width: 3px;
+  stroke: rgb(85, 85, 85);
+  width: 100%;
+  height: 100%;
+  fill: transparent;
+  stroke-dasharray: 0% 950px;
+  transition: stroke-dasharray 0.5s ease-in-out, stroke 0.2s ease-in;
+}
+
+.login-area form label{
+  color: rgb(96, 96, 96);
+  font-size: 1em;
+  font-weight: 100;
+  margin-top: 0.5em;
+  letter-spacing: 0.3em;
+  transform-origin: left center;
+  transform: translate(1em, 3.25em) scale(1.2);
+  transition: transform 0.5s ease-in-out, letter-spacing 0.5s ease-in-out;
+}
+
+.login-area form input:focus + label,
+.login-area form input.ng-valid + label{
+  transform: translate(0, 0) scale(1);
+  letter-spacing: 0.1em;
+}
+
+form button{
+  width: 50%;
+  font-size: 1.5em;
+  padding: 0.75em;
+  border: 0;
+  color: rgb(236, 236, 236);
+  margin: 0.75em 0;
+  background-color: rgb(153, 224, 182);
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+  margin-left: 50%;
+}
+
+form button:hover, form button:focus{
+  background-color: rgb(128, 187, 153);
+}
 @media (max-device-width: 900px) {
   .container button{
     width: 100%;

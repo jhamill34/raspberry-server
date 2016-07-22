@@ -58,9 +58,9 @@ var p = new Poll(function(){
 // Do a quick check to see if we have a stored auth token
 // if we dont' open up the login dialog
 // TODO: turn this into a check for session variables
-setTimeout(function(){
+if(!sessionStorage.getItem(TOKEN)){
     $(".login-area").addClass("active");
-}, 2000);
+}
 
 // Form submit callback
 // Will post an alert if login was invalid.

@@ -49,6 +49,12 @@ body {
 }
 
 .login-area{
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.login-area.active{
+  opacity: 1;
   position: fixed;
   top: 0;
   left: 0;
@@ -196,6 +202,35 @@ form button{
 form button:hover, form button:focus{
   background-color: rgb(128, 187, 153);
 }
+
+.alert{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 1em;
+  font-size: 1.5em;
+  letter-spacing: 0.1em;
+  border-radius: 10px;
+  z-index: 2;
+  margin: 1em;
+  transform: translate(0, -150%);
+  transition: transform 0.5s ease-out;
+}
+
+.alert.active{
+  transform: translate(0,0);
+}
+
+.alert.success{
+  background-color: rgba(71, 215, 64, 0.54);
+}
+
+.alert.fail{
+  background-color: rgba(249, 78, 78, 0.64);
+}
+
+
 @media (max-device-width: 900px) {
   .container button{
     width: 100%;

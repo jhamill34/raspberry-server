@@ -17,7 +17,7 @@ router.post('/', function(req, res){
                 uname : req.body.uname
             }, config.secret, {
                 algorithm : 'HS256',
-                expiresIn : '4h'
+                expiresIn : '24h'
             }, function(err, token){
                 res.status(201).json({
                     token: token

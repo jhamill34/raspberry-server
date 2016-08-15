@@ -62,7 +62,7 @@ describe("Authentication Route Specs", function(){
                 });
         });
 
-        it("should expire the token after 4 hours", function(done){
+        it("should expire the token after 24 hours", function(done){
             // Freeze the time to NOW 
             var time = Date.now();
             tk.freeze(time);
@@ -76,7 +76,7 @@ describe("Authentication Route Specs", function(){
                     if(err) throw err;
                    
                     // Move time forward to invalidate the token 5 hours
-                    var futureDate = time + 3600000 * 5;
+                    var futureDate = time + 3600000 * 25;
                     tk.freeze(futureDate);
 
                     // Verify the token 

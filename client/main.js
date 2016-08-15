@@ -26,12 +26,12 @@ function postAlert(message, status){
 // if at any point the request becomes Invalid
 // we will attempt to stop the polling
 var p = new Poll(function(){
-  if(sessionStorage.getItem(TOKEN)){
+  if(localStorage.getItem(TOKEN)){
     $.ajax({
       url : '/outlets',
       method : 'GET',
       headers : {
-        'Authorization' : 'Bearer ' + sessionStorage.getItem(TOKEN)
+        'Authorization' : 'Bearer ' + localStorage.getItem(TOKEN)
       }
     }).done(function(result){
       $('.container button').each(function(ndx, button){
@@ -58,8 +58,10 @@ var p = new Poll(function(){
 // Do a quick check to see if we have a stored auth token
 // if we dont' open up the login dialog
 // TODO: turn this into a check for session variables
-if(!sessionStorage.getItem(TOKEN)){
+if(!localStorage.getItem(TOKEN)){
     $(".login-area").addClass("active");
+}else{
+    p.startPolling();
 }
 
 // Form submit callback
@@ -80,7 +82,7 @@ $(".login-area form").submit(function(e){
       contentType : 'application/json',
       data : JSON.stringify(loginObj)
   }).done(function(data, status){
-    sessionStorage.setItem(TOKEN, data.token);
+    localStorage.setItem(TOKEN, data.token);
     $('.login-area').removeClass('active');
     p.startPolling();
   }).fail(function(jqXHR, textStatus, errorThrown){
@@ -106,14 +108,14 @@ $("input").keyup(function(){
 // Attempt to toggle the GPIO pin
 // If unauthenticated will bring up the login dialog
 $('.container button').click(function(){
-  if(sessionStorage.getItem(TOKEN)){
+  if(localStorage.getItem(TOKEN)){
     var outletNumber = $(this).data('outlet');
     if($(this).hasClass('selected')){
       $.ajax({
         url : '/outlets/' + outletNumber,
         method : 'DELETE',
         headers : {
-          'Authorization' : 'Bearer ' + sessionStorage.getItem(TOKEN)
+          'Authorization' : 'Bearer ' + localStorage.getItem(TOKEN)
         }
       }).done(function(){
         $(this).removeClass('selected');
@@ -129,7 +131,7 @@ $('.container button').click(function(){
         url : '/outlets/' + outletNumber,
         method : 'POST',
         headers : {
-          'Authorization' : 'Bearer ' + sessionStorage.getItem(TOKEN)
+          'Authorization' : 'Bearer ' + localStorage.getItem(TOKEN)
         }
       }).then(function(){
         $(this).addClass('selected');
